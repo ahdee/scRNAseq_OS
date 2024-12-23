@@ -13,8 +13,8 @@ subgraph DP["fa:fa-microchip 2. Data Processing"]
     direction TB
     raw("fa:fa-database Raw Data")
     artrem("fa:fa-filter Artifact Removal")
+    qc("fa:fa-check-circle QC<br>Cell cycle, Mitochondria, nFeature")
     norm("fa:fa-balance-scale Normalization")
-    note2["fa:fa-check-circle QC metrics & filtering<br>Cell cycle, Mitochondria, nFeature"]
 end
 
 subgraph INT["fa:fa-object-group 3. Integration"]
@@ -31,6 +31,7 @@ subgraph ANN["fa:fa-tags 4. Cell Type Annotation"]
     direction TB
     pre["fa:fa-robot Pre-Trained<br>sc-type (Ianevski et al, 2022)<br>SingleR (Aran et al, 2019)<br>scGate (Andreatta et al, 2022)<br>cellassign (Zhang et al, 2019)"]
     cust["fa:fa-cogs Custom<br>SVM (Abdelaal et al, 2019)<br>scDeepSort (Shao et al, 2021)"]
+    ref["fa:fa-link Reference Based<br>Seurat (Stuart et al, 2019)"]
     mark["fa:fa-bookmark Markers<br>Osteoblast (Amarasekara et al, 2021)<br>MSC (Patel et al, 2016)<br>Osteoblast Precursor (Kim & Adachi, 2019)<br>Osteoblast (Hojo et al, 2022)"]
 end
 
@@ -40,7 +41,7 @@ subgraph TUMOR["fa:fa-dna 5. Tumor Analysis"]
     note3["inferCNV<br>copyKat (Gao et al, 2021)<br>SCEVAN (De Falco et al, 2023)<br>numbat (Gao et al, 2022)"]
 end
 
-subgraph TRAJ["fa:fa-route 6. Trajectory"]
+subgraph TRAJ["fa:fa-route 6. Trajectory & Cell State"]
     direction TB
     mono("fa:fa-stream Monocle<br>Qiu et al, 2017")
     sling("fa:fa-bezier-curve Slingshot<br>Street et al, 2018")
@@ -59,7 +60,7 @@ subgraph STAT["fa:fa-calculator 7. Statistical Inference"]
         nonpar["fa:fa-not-equal Non-Parametric<br>(Wilcoxon rank-sum)"]
     end
     
-    subgraph pseudo["Pseudoreplication"]
+    subgraph pseudo["Issues with Overinflated p-values"]
         direction TB
         pbulk["fa:fa-layer-group Pseudobulk"]
         mixed["fa:fa-random Mixed Models"]
@@ -107,8 +108,8 @@ ffpe --> dissoc
 dissoc -.- note1
 dissoc -.- note4
 raw -- "alevin-fry (He et al, 2022)<br>cellranger<br>STARsolo (Kaminow et al, 2021)" --> artrem
-artrem -- "SoupX (Young & Behjati, 2020)<br>cellbender (Fleming et al, 2023)" --> norm
-norm -.- note2
+artrem -- "SoupX (Young & Behjati, 2020)<br>cellbender (Fleming et al, 2023)" --> qc
+qc --> norm
 cnv -.- note3
 
 SP --> DP --> INT --> ANN
@@ -118,7 +119,6 @@ STAT --> FUNC --> CLIN --> DATA
 %% Style definitions
 classDef note fill:#fff,stroke:#999,stroke-width:1px,color:#666,font-size:10px
 note1:::note
-note2:::note
 note3:::note
 note4:::note
 note6:::note
