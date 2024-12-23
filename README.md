@@ -1,3 +1,4 @@
+```mermaid
 flowchart TB
     subgraph SP["1. Sample Preparation & QC"]
         direction TB
@@ -112,3 +113,4 @@ flowchart TB
 
     classDef note fill:#fff,stroke:#999,stroke-width:1px,color:#666,font-size:10px
     class note1,note2,note3,note4,note5,note6 note
+```
