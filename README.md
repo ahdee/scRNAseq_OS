@@ -11,7 +11,7 @@ subgraph SP["fa:fa-vial 1. Sample Preparation & QC"]
     fresh --> dissoc
     ffpe --> dissoc
     dissoc --> batch
-    note1["fa:fa-info-circle Bone Tumor Specific\nHandling Considerations"]
+    note1["fa:fa-info-circle Bone Tumor Specific<br>Handling Considerations"]
     dissoc -.- note1
 end
 
@@ -21,8 +21,8 @@ subgraph DP["fa:fa-microchip 2. Data Processing"]
     artrem("fa:fa-filter Artifact Removal")
     norm("fa:fa-balance-scale Normalization")
     
-    raw --> |"alevin-fry\ncellranger\nSTARsolo"| artrem
-    artrem --> |"SoupX\ncellbender"| norm
+    raw --> |"alevin-fry <br> cellranger<br>STARsolo"| artrem
+    artrem --> |"SoupX<br>cellbender"| norm
     note2["fa:fa-check-circle QC metrics & filtering"]
     norm -.- note2
 end
@@ -46,7 +46,7 @@ end
 subgraph TUMOR["fa:fa-dna 5. Tumor Analysis"]
     direction TB
     cnv("fa:fa-chart-line CNV Analysis")
-    note3["inferCNV\ncopyKat\nSCEVAN"]
+    note3["inferCNV<br>copyKat<br>SCEVAN"]
     cnv -.- note3
 end
 
@@ -72,7 +72,7 @@ subgraph FUNC["fa:fa-puzzle-piece 8. Functional"]
 end
 
 subgraph DATA["fa:fa-database 9. Datasets"]
-    note6["GSE152048\nGSE162454\nGSE87624"]
+    note6["GSE152048<br>GSE162454<br>GSE87624"]
 end
 
 %% Main workflow connections
