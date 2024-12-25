@@ -34,9 +34,9 @@ subgraph DIM["Dimensionality & Clustering"]
     clust["Iteratively testing <br> different parameters"]
 
     subgraph metrics["Validation"]
-        tech["Silhouette Score<br>Davies-Bouldin Index"]
+        
         bio1["Marker Genes <br> Pathway Signatures"]
-        known["Biological consistency"]  
+        known["Biological consistency <Br> relevance"]  
     end
 
 
