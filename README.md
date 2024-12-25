@@ -27,6 +27,21 @@ subgraph INT["fa:fa-object-group 3. Integration"]
     fastmnn("fa:fa-compress-arrows-alt fastMNN<br>Zhang et al, 2019")
 end
 
+subgraph DIM["Dimensionality & Clustering"]
+    
+  direction TB
+    red["UMAP, PCA"]
+    clust["Iteratively testing <br> different parameters"]
+
+    subgraph metrics["Validation"]
+        tech["Silhouette Score<br>Davies-Bouldin Index"]
+        bio1["Marker Genes <br> Pathway Signatures"]
+        known["Biological consistency"]  
+    end
+
+
+end
+
 subgraph ANN["fa:fa-tags 4. Cell Type Annotation"]
     direction TB
     pre["fa:fa-robot Pre-Trained<br>sc-type (Ianevski et al, 2022)<br>SingleR (Aran et al, 2019)<br>scGate (Andreatta et al, 2022)<br>cellassign (Zhang et al, 2019)"]
@@ -112,16 +127,20 @@ artrem -- "SoupX (Young & Behjati, 2020)<br>cellbender (Fleming et al, 2023)" --
 qc --> norm
 cnv -.- note3
 
-SP --> DP --> INT --> ANN
+SP --> DP --> INT --> DIM --> ANN
 ANN --> TUMOR & TRAJ & STAT
 STAT --> FUNC --> CLIN --> DATA
-
+red --> clust --> metrics
+clust --> red
 %% Style definitions
 classDef note fill:#fff,stroke:#999,stroke-width:1px,color:#666,font-size:10px
 note1:::note
 note3:::note
 note4:::note
 note6:::note
+
+style DIM fill:#7B9E81,stroke:#333,stroke-width:2px,color:#fff
+style metrics fill:#8B9E81,stroke:#333,stroke-width:2px,color:#fff
 
 style SP fill:#D47553,stroke:#333,stroke-width:2px,color:#fff
 style DP fill:#8B9E81,stroke:#333,stroke-width:2px,color:#fff
